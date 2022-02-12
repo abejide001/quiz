@@ -3,30 +3,36 @@ const request = require('supertest');
 const app = require('../../../app');
 
 it("should fail when the account does not exist", async () => {
-  await request(app)
+  const res = await request(app)
     .post("/api/v1/auth/signin")
     .send({
       email: "test@gmail.com",
       password: "asff",
-    })
-    .expect(401);
+    });
+  expect(res.status).toEqual(401);
+  expect(res.body.status).toEqual('fail');
 });
 
 it("should return 422 if there is no input", async () => {
-  await request(app)
+  const res = await request(app)
     .post("/api/v1/auth/signin")
-    .send({})
-    .expect(422);
+    .send({});
+  expect(res.status).toEqual(422);
+  expect(res.body.status).toEqual('fail');
+  expect(res.body.error[0].email).toEqual('email is required');
+  expect(res.body.error[1].password).toEqual('password is required');
 });
 
 it("should return 422 when an invalid email is provided", async () => {
-  await request(app)
+  const res = await request(app)
     .post("/api/v1/auth/signin")
     .send({
       email: "abab",
       password: "abcde"
-    })
-    .expect(422);
+    });
+    expect(res.status).toEqual(422);
+    expect(res.body.status).toEqual('fail');
+    expect(res.body.error[0].email).toEqual('email must be valid');
 });
 
 

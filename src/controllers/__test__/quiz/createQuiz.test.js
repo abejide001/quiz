@@ -13,6 +13,9 @@ it('should return a status other than 401 if the user is signed in', async () =>
     .post('/api/v1/quiz')
     .set('Authorization', `Bearer ${global.userSignIn()}`)
     .send({});
+  expect(res.body.status).toEqual('fail');
+  expect(res.body.error[0].question).toEqual('question is required');
+  expect(res.body.error[1].answer).toEqual('answer is required');
   expect(res.status).not.toEqual(401);
 });
 
@@ -22,14 +25,16 @@ it('creates a ticket with valid inputs', async () => {
 
   const question = 'I cant subscribe';
   const answer = 'Subscription';
-  await request(app)
+  const res = await request(app)
     .post('/api/v1/quiz')
     .set('Authorization', `Bearer ${global.userSignIn()}`)
     .send({
       question,
       answer,
-    })
-    .expect(201);
+    });
   quiz = await Quiz.find({});
   expect(quiz[0].question).toEqual(question);
+  expect(quiz[0].answer).toEqual(answer);
+  expect(res.status).toEqual(201);
+  expect(res.body.status).toEqual('success');
 });

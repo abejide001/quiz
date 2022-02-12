@@ -1,8 +1,10 @@
 /* eslint-disable no-undef */
+global.TextEncoder = require("util").TextEncoder;
+global.TextDecoder = require("util").TextDecoder;
 const { MongoMemoryServer } = require("mongodb-memory-server");
 const  mongoose = require("mongoose");
+const Quiz = require("../database/models/quiz");
 const jwtGenerator = require("../utils/jwtGenerator");
-// import jwtSign from "../helpers/token";
 
 let mongo;
 beforeAll(async () => {
@@ -33,12 +35,19 @@ afterAll(async () => {
 global.userSignIn = () => {
   // Build a JWT payload.  { id, email }
   const payload = {
-    id: mongoose.Types.ObjectId().toHexString(),
+    id: "6207985644af7f10d7dd9f20",
     email: "test@test.com",
   };
-
   // Create the JWT!
   const token = jwtGenerator(payload);
 
   return token;
+};
+
+global.createQuiz = async () => {
+  return await Quiz.create({
+    question: Math.random().toString(36).substr(2, 10),
+    answer: 'test',
+    askedBy: '62051dc583514a0caa7fdac3',
+  });
 };
