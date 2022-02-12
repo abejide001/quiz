@@ -8,7 +8,7 @@
     "start:dev": "nodemon ./src/index.js",
     "test:watch": "jest --watchAll --no-cache --detectOpenHandles",
     "test": "jest --force-exit --detectOpenHandles",
-    "test:cov": "jest --coverage --force-exit --detectOpenHandles",
+    "test:coverage": "jest --coverage --force-exit --detectOpenHandles",
     "deploy": "git add . && git commit -m Heroku && git push heroku develop:master",
     "lint:fix": "eslint --fix ."
   },

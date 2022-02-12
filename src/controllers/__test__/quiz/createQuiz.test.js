@@ -3,6 +3,8 @@ const request = require('supertest');
 const app = require('../../../app');
 const Quiz = require('../../../database/models/quiz');
 
+const userId = '6207985644af7f10d7dd9f20';
+
 it('should return 401 if the user is not signed in', async () => {
   const res = await request(app).post('/api/v1/quiz').send({});
   expect(res.status).toEqual(401);
@@ -11,7 +13,7 @@ it('should return 401 if the user is not signed in', async () => {
 it('should return a status other than 401 if the user is signed in', async () => {
   const res = await request(app)
     .post('/api/v1/quiz')
-    .set('Authorization', `Bearer ${global.userSignIn()}`)
+    .set('Authorization', `Bearer ${global.userSignIn(userId)}`)
     .send({});
   expect(res.body.status).toEqual('fail');
   expect(res.body.error[0].question).toEqual('question is required');
@@ -27,7 +29,7 @@ it('creates a ticket with valid inputs', async () => {
   const answer = 'Subscription';
   const res = await request(app)
     .post('/api/v1/quiz')
-    .set('Authorization', `Bearer ${global.userSignIn()}`)
+    .set('Authorization', `Bearer ${global.userSignIn(userId)}`)
     .send({
       question,
       answer,

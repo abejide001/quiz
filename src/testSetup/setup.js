@@ -32,10 +32,10 @@ afterAll(async () => {
     await mongoose.connection.close();
   });
 
-global.userSignIn = () => {
+global.userSignIn = (userId) => {
   // Build a JWT payload.  { id, email }
   const payload = {
-    id: "6207985644af7f10d7dd9f20",
+    id: userId,
     email: "test@test.com",
   };
   // Create the JWT!
