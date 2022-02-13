@@ -12,6 +12,7 @@ const verifyQuiz = require('../middlewares/quiz/verifyQuiz');
 const validateQuizOperation = require('../validations/quiz/validateQuizOperation');
 const {
   createQuizValidationRules,
+  answerQuizValidation,
 } = require('../validations/quiz/validateRequestBody');
 
 const quizRouter = express.Router();
@@ -34,5 +35,12 @@ quizRouter.put(
   canUpdateQuiz,
   updateQuiz
 );
-quizRouter.post('/:id/answer', requireAuth, canAnswerQuiz, answerQuiz);
+quizRouter.post(
+  '/:id/answer',
+  requireAuth,
+  canAnswerQuiz,
+  validateBody,
+  answerQuizValidation(),
+  answerQuiz
+);
 module.exports = quizRouter;

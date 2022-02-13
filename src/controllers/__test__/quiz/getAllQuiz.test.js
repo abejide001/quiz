@@ -8,7 +8,7 @@ it('should return a list of quiz', async () => {
   await global.createQuiz();
   await global.createQuiz();
   const quiz = await Quiz.find();
- expect(quiz.length).toEqual(3);
+  expect(quiz.length).toEqual(3);
 });
 
 it('returns a 401 if user is not authenticated', async () => {

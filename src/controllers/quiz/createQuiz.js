@@ -15,7 +15,11 @@ const {
  */
 const createQuiz = async (req, res) => {
   const { question, answer } = req.body;
-
+  const questionExist = await Quiz.findOne({ question });
+  if (questionExist) {
+    sendFailureResponse(res, 409, "Question already exist");
+    return;
+  }
   try {
     const quiz = await Quiz.create({
         question,

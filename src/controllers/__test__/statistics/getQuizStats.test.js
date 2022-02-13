@@ -5,6 +5,7 @@ const app = require("../../../app");
 it('should return all quiz asked/created by a user', async () => {
   const quiz = await global.createQuiz();
   let userId = quiz.askedBy;
+
   const response = await request(app)
     .get(`/api/v1/stats/quiz`)
     .set('Authorization', `Bearer ${global.userSignIn(userId)}`);

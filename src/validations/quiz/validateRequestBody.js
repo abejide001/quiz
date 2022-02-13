@@ -14,11 +14,19 @@ const updateQuizValidationRules = () => {
     check('question')
     .trim().optional({ nullable: false }),
     check('answer')
-    .trim().optional({ nullable: true }),
+    .trim().optional({ nullable: false }),
+  ];
+};
+
+const answerQuizValidation = () => {
+  return [
+    check('answer')
+    .trim().not().isEmpty().withMessage('answer is required'),
   ];
 };
 
 module.exports = {
   createQuizValidationRules,
-  updateQuizValidationRules
+  updateQuizValidationRules,
+  answerQuizValidation
 };

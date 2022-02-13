@@ -5,6 +5,7 @@ const mongoSanitize = require('express-mongo-sanitize');
 const cors = require('cors');
 const routes = require('./routes');
 const { sendFailureResponse } = require('./utils/response');
+const { urlencoded } = require("express");
 
 dotenv.config();
 
@@ -14,6 +15,7 @@ app.use(cors());
 app.use(morgan('dev'));
 app.use(mongoSanitize());
 app.use(express.json());
+app.use(urlencoded({ extended: false }));
 
 app.use('/api/v1/', routes());
 
