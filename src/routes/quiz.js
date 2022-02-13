@@ -9,8 +9,9 @@ const validateBody = require('../middlewares/common/validateBody');
 const canAnswerQuiz = require('../middlewares/quiz/canAnswerQuiz');
 const canUpdateQuiz = require('../middlewares/quiz/canUpdateQuiz');
 const verifyQuiz = require('../middlewares/quiz/verifyQuiz');
+const validateQuizOperation = require('../validations/quiz/validateQuizOperation');
 const {
-  quizValidationRules,
+  createQuizValidationRules,
 } = require('../validations/quiz/validateRequestBody');
 
 const quizRouter = express.Router();
@@ -18,13 +19,20 @@ const quizRouter = express.Router();
 quizRouter.post(
   '/',
   requireAuth,
-  quizValidationRules(),
+  createQuizValidationRules(),
   validateBody,
   createQuiz
 );
 
 quizRouter.get('/', requireAuth, getAllQuiz);
 quizRouter.get('/:id', requireAuth, verifyQuiz, getOneQuiz);
-quizRouter.put('/:id', requireAuth, verifyQuiz, canUpdateQuiz, updateQuiz);
+quizRouter.put(
+  '/:id',
+  requireAuth,
+  validateQuizOperation,
+  verifyQuiz,
+  canUpdateQuiz,
+  updateQuiz
+);
 quizRouter.post('/:id/answer', requireAuth, canAnswerQuiz, answerQuiz);
 module.exports = quizRouter;

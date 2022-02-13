@@ -1,6 +1,6 @@
 # Quiz App
 
-[![CircleCI](https://circleci.com/gh/abejide001/quiz.svg?style=svg)](https://app.circleci.com/pipelines/github/abejide001/customer-support/54a914c3-105e-4010-bbb6-281cfcfb8451)
+[![CircleCI](https://circleci.com/gh/abejide001/quiz.svg?style=svg)](https://app.circleci.com/pipelines/github/abejide001/quiz/4/workflows/40101214-aeac-4f60-b465-826713f250f8)
 
 Quiz App API
 

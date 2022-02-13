@@ -8,7 +8,6 @@ const routes = () => {
   router.use('/auth', authRouter);
   router.use("/quiz", quizRouter);
   router.use("/stats", statsRouter);
-  //   router.use("/comments", commentsRoute);
   //   router.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
   return router;
 };
