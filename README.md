@@ -64,7 +64,7 @@ API BASE URL(<https://quiz-2022.herokuapp.com/api/v1>). It's recommended to atta
 ### Quiz endpoints `/quiz`
 
 | method | route              | description                        | data                   |
-|--------|--------------------|------------------------------------|----------------- ------|
+|--------|--------------------|------------------------------------|------------------------|
 | GET    | /                  | Get all quiz                       |                        |
 | POST   | /                  | Create a quiz                      | `{question, answer}`   |
 | GET    | /:id               | Get a single quiz                  |                        |
