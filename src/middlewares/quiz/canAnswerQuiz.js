@@ -14,7 +14,7 @@ const canAnswerQuiz = async (req, res, next) => {
     const stats = await Statistics.findOne({ quiz: id });
     if (
       stats &&
-      stats.success &&
+      stats.isCompleted &&
       stats.attemptedBy.toString() === currentUser
     ) {
       sendFailureResponse(

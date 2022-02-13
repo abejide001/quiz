@@ -13,7 +13,7 @@ const {
 
 const getAllQuiz = async (req, res) => {
   try {
-    const quizzes = await Quiz.find().select('-answer');
+    const quizzes = await Quiz.find().select('-answer').sort({ createdAt: -1 });
     sendSuccessResponse(res, 200, "Quizzes fetched successfully", quizzes);
   } catch (error) {
     sendFailureResponse(res, 500, error.message);

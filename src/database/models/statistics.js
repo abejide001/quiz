@@ -14,9 +14,13 @@ const statisticsSchema = new mongoose.Schema(
       type: Number,
       default: 0
     },
-    success: {
+    isCompleted: {
       type: Boolean,
       default: false,
+    },
+    askedBy: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'User',
     },
   },
   {
@@ -27,6 +31,7 @@ const statisticsSchema = new mongoose.Schema(
         delete ret.password;
       },
     },
+    timestamps: true
   }
 );
 

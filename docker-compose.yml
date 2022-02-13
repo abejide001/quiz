@@ -9,7 +9,7 @@ services:
           context: .
           network: host
         ports: 
-          - "3000:9000"
+          - "3000:5000"
         depends_on:
           - mongo
     mongo:

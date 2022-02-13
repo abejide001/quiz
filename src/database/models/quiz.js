@@ -23,6 +23,7 @@ const quizSchema = new mongoose.Schema(
         delete ret._id;
       },
     },
+    timestamps: true
   }
 );
 

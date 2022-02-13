@@ -26,7 +26,8 @@ const answerQuiz = async (req, res) => {
         {
           quiz: id,
           attemptedBy: req.user.id,
-          success: false,
+          askedBy: quiz.askedBy,
+          isCompleted: false,
           $inc: { failedAttempts: 1 },
         },
         { upsert: true }
@@ -39,7 +40,8 @@ const answerQuiz = async (req, res) => {
       {
         quiz: id,
         attemptedBy: req.user.id,
-        success: true,
+        askedBy: quiz.askedBy,
+        isCompleted: true,
       },
       { upsert: true }
     );

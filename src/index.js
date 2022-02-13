@@ -3,7 +3,7 @@ const app = require('./app');
 
 require("./database/config");
 
-const port = process.env.PORT || 9000;
+const port = process.env.PORT || 5000;
 
 const server = app.listen(port, () => {
   console.log(`App listening on ${port}`);

@@ -22,7 +22,7 @@ it('should return 200 if the user answers a question correctly', async () => {
     .set('Authorization', `Bearer ${global.userSignIn(userId)}`)
     .send({ answer: 'test' });
   const stats = await Statistics.findOne({ quiz: quiz.id });
-  expect(stats.success).toBe(true);
+  expect(stats.isCompleted).toBe(true);
   expect(stats.failedAttempts).toBe(0);
   expect(res.body.status).toEqual('success');
   expect(res.status).toEqual(200);

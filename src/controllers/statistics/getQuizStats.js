@@ -8,21 +8,22 @@ const {
  *
  * @param {Object} res - HTTP response object
  *
- * @return {Object} Returns all stats
+ * @return {Object} Returns all quiz stats created by the user
  */
 
-const getStats = async (req, res) => {
+const getQuizStats = async (req, res) => {
   try {
-    const { success } = req.query;
+    const { isCompleted } = req.query;
     let query = {
-      attemptedBy: req.user.id,
-      ...(success && { success })
+      askedBy: req.user.id,
+      ...(isCompleted && { isCompleted })
     };
     const stats = await Statistics.find(query).populate(
       'quiz',
       'question answer'
     );
-    sendSuccessResponse(res, 200, 'Stats fetched successfully', {
+    
+    sendSuccessResponse(res, 200, 'Quiz Stats fetched successfully', {
       stats,
     });
   } catch (error) {
@@ -30,4 +31,4 @@ const getStats = async (req, res) => {
   }
 };
 
-module.exports = getStats;
+module.exports = getQuizStats;
