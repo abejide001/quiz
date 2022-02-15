@@ -21,7 +21,7 @@ app.use('/api/v1/', routes());
 
 app.get('/api/v1', (_, res) => {
   res.status(200).json({
-    message: `Welcome to v1 of records, visit the docs - ${'https://quiz-2022.herokuapp.com/api/v1/docs'}`,
+    message: `Welcome to v1 of quiz, visit the docs - ${'https://quiz-2022.herokuapp.com/api/v1/docs'}`,
   });
 });
 

@@ -51,7 +51,7 @@ npm run test
 
 ## Run with Docker
 
-set the DATABASE_URL to mongodb://mongo:27017/quizapp before running the command below
+set the DATABASE_URL in the env to mongodb://mongo:27017/quizapp before running the command below
 
 ```bash
 docker-compose up --build
@@ -63,20 +63,20 @@ API BASE URL(<https://quiz-2022.herokuapp.com/api/v1>). It's recommended to atta
 
 ### Quiz endpoints `/quiz`
 
-| method | route              | description                        | data                   |
-|--------|--------------------|------------------------------------|------------------------|
-| GET    | /                  | Get all quiz                       |                        |
-| POST   | /                  | Create a quiz                      | `{question, answer}`   |
-| GET    | /:id               | Get a single quiz                  |                        |
-| PUT    | /:id               | Update a quiz                      | `{question, answer}`   |
-| POST   | /:id/answer        | Answer a quiz question             | `{answer}`             |
+| method | route       | description            | data                 |
+|--------|-------------|------------------------|----------------------|
+| GET    | /           | Get all quiz           |                      |
+| POST   | /           | Create a quiz          | `{question, answer}` |
+| GET    | /:id        | Get a single quiz      |                      |
+| PUT    | /:id        | Update a quiz          | `{question, answer}` |
+| POST   | /:id/answer | Answer a quiz question | `{answer}`           |
 
 ### Stats endpoint `/stats`
 
-| method | route      | description                                          |
-|--------|------------|------------------------------------------------------|
-| GET    | /user      | Get statistics for the quiz attempted by a user      |
-| GET    | /quiz      | Get statistics for the quiz created by a user        |
+| method | route | description                                     |
+|--------|-------|-------------------------------------------------|
+| GET    | /user | Get statistics for the quiz attempted by a user |
+| GET    | /quiz | Get statistics for the quiz created by a user   |
 
 ### Authentication endpoints `/auth`
 

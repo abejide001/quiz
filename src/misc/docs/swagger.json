@@ -3,7 +3,7 @@
   "info": {
     "description": "Answer interesting questions and gain points",
     "version": "1.0.0",
-    "title": "Customer support center",
+    "title": "Quiz app",
     "contact": {
       "email": "abejidefemi1@gmail.com"
     },
@@ -218,13 +218,6 @@
             "in": "formData",
             "required": true,
             "type": "string"
-          },
-          {
-            "name": "Authorization",
-            "in": "header",
-            "required": true,
-            "default": "Bearer {token}",
-            "type": "string"
           }
         ],
         "responses": {
@@ -281,6 +274,91 @@
               "example": {
                 "status": "fail",
                 "error": "Question already exist"
+              }
+            },
+            "description": "",
+            "headers": {}
+          }
+        }
+      }
+    },
+    "/quiz/{id}/": {
+      "put": {
+        "summary": "Edit a quiz",
+        "tags": ["Quiz"],
+        "operationId": "EditQuiz",
+        "deprecated": false,
+        "produces": ["application/json"],
+        "consumes": ["application/x-www-form-urlencoded"],
+        "security": [
+          {
+            "bearerAuth": []
+          }
+        ],
+        "parameters": [
+          {
+            "name": "question",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "answer",
+            "in": "formData",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "id",
+            "in": "path",
+            "description": "quiz id",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Quiz updated successfully",
+            "schema": {
+              "title": "Success",
+              "example": {
+                "status": "success",
+                "data": {
+                  "quiz": {
+                    "question": "what is cood",
+                    "answer": "yes",
+                    "askedBy": "6205051b2b3ee175213db54d",
+                    "createdAt": "2022-02-14T20:30:23.800Z",
+                    "updatedAt": "2022-02-14T20:30:23.800Z",
+                    "__v": 0,
+                    "id": "620abbdf5436d2b8bf31f2b8"
+                  }
+                }
+              }
+            }
+          },
+          "401": {
+            "description": "User authorization error",
+            "schema": {
+              "example": {
+                "status": "fail",
+                "error": "Kindly provide a token"
+              }
+            }
+          },
+          "422": {
+            "schema": {
+              "title": "Fail",
+              "example": {
+                "status": "fail",
+                "error": [
+                  {
+                    "question": "question is required"
+                  },
+                  {
+                    "answer": "answer is required"
+                  }
+                ]
               }
             },
             "description": "",

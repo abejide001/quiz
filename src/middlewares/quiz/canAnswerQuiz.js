@@ -8,7 +8,7 @@ const canAnswerQuiz = async (req, res, next) => {
     const quiz = await Quiz.findById(id);
     const currentUser = req.user.id;
     if (quiz.askedBy.toString() === currentUser) {
-      sendFailureResponse(res, 422, "You can't answer the quiz created by you");
+      sendFailureResponse(res, 400, "You can't answer the quiz created by you");
       return;
     }
     const stats = await Statistics.findOne({ quiz: id });
@@ -19,7 +19,7 @@ const canAnswerQuiz = async (req, res, next) => {
     ) {
       sendFailureResponse(
         res,
-        422,
+        400,
         'You have already answered this quiz correctly'
       );
       return;

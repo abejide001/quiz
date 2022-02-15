@@ -46,3 +46,21 @@ it('should fail when an incorrect mail is supplied', async () => {
     })
     .expect(401);
 });
+
+it('should pass when a valid email and password is supplied', async () => {
+  await request(app)
+    .post('/api/v1/auth/signup')
+    .send({
+      email: 'test@gmail.com',
+      password: 'abcde',
+    })
+    .expect(201);
+
+  await request(app)
+    .post('/api/v1/auth/signin')
+    .send({
+      email: 'test@gmail.com',
+      password: 'abcde',
+    })
+    .expect(200);
+});
